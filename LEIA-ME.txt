@@ -1,0 +1,164 @@
+PORTAL DE TEYVAT — instruções de imagens e áudio
+==================================================
+
+COMO ABRIR
+----------
+Abra o arquivo index.html no navegador. Não precisa de servidor,
+build ou instalação — é HTML, CSS e JavaScript puro (nenhum
+framework, Node, PHP ou banco de dados).
+
+Única dependência externa: a biblioteca html2canvas, carregada via
+CDN (cdnjs.cloudflare.com) — usada para transformar os cards de
+resultado/perfil em imagens PNG. Se você abrir o arquivo sem
+internet, essa função específica (gerar/baixar/compartilhar
+imagem) não funciona, mas o resto do Portal continua normal.
+
+O SITE FUNCIONA MESMO SEM NENHUMA IMAGEM/ÁUDIO — qualquer arquivo
+ausente é escondido com elegância (nunca aparece ícone quebrado).
+Mas fica muito mais bonito com as artes reais nos lugares abaixo.
+
+ESTRUTURA DE PASTAS
+--------------------
+/index.html
+/css/style.css
+/css/animations.css
+/css/responsive.css
+/js/data.js            -> ELEMENTS, CHARACTERS, REGIONS, ACHIEVEMENTS, ACTIVITIES (fonte única de dados)
+/js/profile.js          -> perfil persistente do jogador (LocalStorage)
+/js/notifications.js    -> sistema de toast
+/js/audio.js            -> música de fundo + efeitos sonoros
+/js/share.js            -> geração de PNG (html2canvas) + compartilhamento
+/js/achievements.js     -> sistema de conquistas
+/js/gallery.js          -> Minha Galeria
+/js/quizzes.js          -> Quiz Elemental completo (20 perguntas)
+/js/characters.js       -> Quiz "Qual personagem combina comigo?" (18 perguntas, 16 personagens)
+/js/regions.js          -> Quiz "Onde em Teyvat você deveria viver?" (15 perguntas, 7 regiões)
+/js/creator.js          -> "Crie seu Personagem de Genshin" (ferramenta de criação livre)
+/js/vision.js           -> "Crie sua Visão" (gerador de Visão personalizada)
+/js/wish.js             -> "Desejos de Teyvat" (simulador visual, sem dinheiro real)
+/js/compat.js           -> "Compatibilidade Elemental" (comparação divertida entre duas Visões)
+/js/encyclopedia.js     -> "Elementos de Teyvat" (enciclopédia dos 7 elementos)
+/js/map.js              -> "Explore Teyvat" (mapa das 7 regiões)
+/js/app.js              -> roteador da SPA, Home, Perfil, modais
+
+/assets/characters/
+    paimon.png       -> guia em toda a experiência
+    hutao.png        -> Pyro (Liyue)
+    furina.png       -> Hydro (Fontaine)
+    kazuha.png       -> Anemo (Inazuma)
+    raiden.png       -> Electro (Inazuma)
+    nahida.png       -> Dendro (Sumeru)
+    ayaka.png        -> Cryo (Inazuma)
+    zhongli.png      -> Geo (Liyue)
+    venti.png        -> Anemo (Mondstadt)
+    xiao.png         -> Anemo (Liyue)
+    neuvillette.png  -> Hydro (Fontaine)
+    arlecchino.png   -> Pyro (Snezhnaya)
+    navia.png        -> Geo (Fontaine)
+    wanderer.png     -> Anemo (Sumeru)
+    yaemiko.png      -> Electro (Inazuma)
+    alhaitham.png    -> Dendro (Sumeru)
+    klee.png         -> Pyro (Mondstadt)
+    (esses 16 personagens aparecem no resultado do Quiz de Personagem;
+    os 7 primeiros também servem como opções de avatar no Perfil)
+
+/assets/visions/
+    pyro.png, hydro.png, anemo.png, electro.png, dendro.png,
+    cryo.png, geo.png
+    -> Visão de cada elemento (resultado do quiz e sequência de revelação)
+
+/assets/regions/
+    mondstadt.jpg   -> Anemo, "A Cidade da Liberdade"
+    liyue.jpg       -> Geo, "O Porto dos Contratos"
+    inazuma.jpg     -> Electro, "A Nação Eterna"
+    sumeru.jpg      -> Dendro, "A Nação da Sabedoria"
+    fontaine.jpg    -> Hydro, "A Nação da Justiça"
+    natlan.jpg      -> Pyro, "A Nação da Chama e da Guerra"
+    snezhnaya.jpg   -> Cryo, "A Nação da Vontade Inabalável"
+    (usadas no resultado do Quiz de Região e na sequência de revelação;
+    fotos/ilustrações de paisagem, formato retangular)
+
+/assets/backgrounds/
+    (opcional, não obrigatório no layout atual)
+
+/assets/music/
+    theme.mp3 -> música de fundo, com fade-in ao clicar em "Começar Jornada"
+
+/assets/sounds/
+    click.mp3        -> ao selecionar uma resposta do quiz
+    achievement.mp3  -> ao desbloquear uma conquista
+    vision.mp3       -> ao revelar o resultado do quiz elemental
+    success.mp3       )
+    wish.mp3          ) reservados para módulos futuros (Wish Simulator etc.)
+
+O QUE JÁ FUNCIONA DE VERDADE NESTA VERSÃO
+-------------------------------------------
+- Portal de Teyvat (Home) com onboarding de nome, saudação dinâmica,
+  avatar, e "Continuar Jornada".
+- Quiz Elemental completo (20 perguntas, pontuação, Paimon, barra de
+  progresso, revelação cinematográfica, resultado, geração de PNG,
+  download, compartilhamento) — 100% preservado do projeto anterior.
+- Quiz de Personagem completo (18 perguntas, 16 personagens, mesma
+  estrutura de revelação/resultado/PNG/compartilhamento do quiz
+  elemental) — salva a afinidade descoberta no Perfil.
+- Quiz de Região completo (15 perguntas, 7 nações de Teyvat, mesma
+  estrutura das outras — com um banner retangular no resultado em vez
+  do círculo de Visão/personagem) — salva a região descoberta no Perfil.
+- Criador de Personagem completo: escolha (ou sorteie com "Sortear
+  para mim") nome, elemento, arma, região, raridade, função,
+  personalidade, constelação e frase; permite enviar uma imagem
+  própria (PNG/JPG) para representar o personagem no card.
+- Gerador de Visão completo: escolha nome, elemento e região para
+  conceder uma Visão personalizada, com Visão grande animada,
+  partículas do elemento e card para compartilhar.
+- Simulador de Desejos completo: "Desejo x1" e "Desejo x10", com
+  estrela cruzando o céu, cor mudando conforme a melhor raridade
+  sorteada, flash luminoso e cards revelados um a um (com garantia
+  de pelo menos um item raro+ em todo Desejo x10). Taxas e raridades
+  são fictícias, só para diversão — sem dinheiro real, compras ou
+  apostas, como avisado na tela inicial do simulador.
+- Perfil do Viajante persistente (nome, avatar, Visão descoberta,
+  região descoberta, afinidade de personagem, conquistas, estatísticas
+  — incluindo desejos realizados —, % de exploração), com card
+  exportável em PNG.
+- Sistema de Conquistas real (não decorativo): "Primeira Visão",
+  "Destinos Entrelaçados", "Um Lugar para Chamar de Lar", "Artesão de
+  Teyvat", "Sob as Estrelas", "Dez Destinos", "Alquimia Elemental",
+  "Fotógrafo de Fontaine" e "Arquivista" já são desbloqueáveis jogando.
+- Minha Galeria: salva resultados dos quizzes (elemental, personagem
+  e região), dos personagens criados e das Visões geradas, permite
+  baixar, compartilhar e excluir — sem guardar imagens em Base64 no
+  LocalStorage (a imagem própria enviada no Criador não é salva na
+  Galeria por esse motivo; ao baixar/compartilhar da Galeria, o card
+  é reconstruído só com a Visão do elemento). Resultados de Desejos
+  não são salvos na Galeria — só contam nas estatísticas do Perfil,
+  como no pedido original.
+- Compatibilidade Elemental completa: escolha sua Visão, o nome do
+  companheiro de jornada e a Visão dele — o resultado (percentual,
+  título, pontos fortes, possíveis conflitos, dinâmica da dupla e
+  frase) é calculado com base nas 28 combinações possíveis entre os
+  7 elementos, inspiradas nas reações e ressonâncias elementais reais
+  do jogo. Sempre com aviso claro de que é só entretenimento, não uma
+  avaliação psicológica real.
+- Elementos de Teyvat (enciclopédia) completa: 7 cards, um por
+  elemento; cada um abre um modal com Visão, características, cor
+  temática, reações elementais associadas e os personagens
+  relacionados (com foto e nome).
+- Mapa de Teyvat (Explore Teyvat) completo: 7 regiões clicáveis com
+  imagem, brilho e nome ao passar o mouse; cada uma abre um modal com
+  imagem, descrição, elemento do Arconte, atmosfera, curiosidades e
+  os personagens relacionados.
+- Notificações (toast) e modal de "Reiniciar Jornada" personalizados
+  (sem usar alert()/confirm() do navegador).
+- Migração automática: quem já tinha usado a versão anterior do quiz
+  não perde o nome salvo.
+
+TODOS OS MÓDULOS DO PEDIDO ORIGINAL ESTÃO IMPLEMENTADOS
+---------------------------------------------------------
+Não há mais nenhum card de "Em breve" no menu do Portal. As 12
+experiências previstas (Quiz Elemental, Quiz de Personagem, Quiz de
+Região, Criador de Personagem, Gerador de Visão, Simulador de
+Desejos, Compatibilidade Elemental, Elementos de Teyvat, Mapa de
+Teyvat, Perfil, Conquistas e Galeria) estão de pé, ligadas ao mesmo
+perfil persistente, ao mesmo sistema de conquistas e à mesma
+Galeria.

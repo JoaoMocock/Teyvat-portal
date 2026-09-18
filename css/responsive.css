@@ -1,0 +1,49 @@
+/* =========================================================
+   PORTAL DE TEYVAT — css/responsive.css
+   Todas as regras @media do projeto.
+   ========================================================= */
+
+@media (max-width: 520px){
+  .mute-toggle{ top: calc(env(safe-area-inset-top, 0) + 12px); right: calc(env(safe-area-inset-right, 0) + 12px); width:38px; height:38px; }
+  .mute-toggle svg{ width:17px; height:17px; }
+  .music-start-btn{ right: calc(env(safe-area-inset-right, 0) + 56px); }
+}
+
+@media (max-width: 860px){
+  .welcome-grid{ grid-template-columns: 1fr; text-align:center; }
+  .welcome-art{ order:-1; min-height:200px; }
+  .welcome-paimon-big{ max-height:200px; }
+  .name-input-row{ flex-direction:column; }
+
+  .portal-header{ flex-direction:column; align-items:flex-start; }
+
+  .result-body{ grid-template-columns: 1fr; text-align:center; }
+  .result-char-wrap{ width:100%; order:-1; }
+  .result-symbol-wrap{ order:-1; margin:0 auto; }
+  .traits-list{ justify-content:center; }
+
+  .paimon-assistant{ right:10px; bottom:10px; }
+  .paimon-bubble{ max-width:170px; font-size:.8rem; }
+
+  .profile-card-header{ flex-direction:column; text-align:center; }
+}
+
+@media (max-width: 520px){
+  .screen{ padding: 22px 5vw; }
+  .cards-grid{ grid-template-columns: 1fr; }
+  .dialogue-box{ flex-direction:column; align-items:center; text-align:center; }
+  .result-actions{ flex-direction:column; width:100%; }
+  .result-actions button{ width:100%; }
+  .profile-actions{ flex-direction:column; width:100%; }
+  .profile-actions button{ width:100%; }
+
+  .result-symbol-wrap{ width: clamp(140px, 40vw, 190px); height: clamp(140px, 40vw, 190px); }
+  .vision-img{ width: clamp(120px, 34vw, 180px); }
+  .orbit-symbol.winner{ width: clamp(110px, 32vw, 150px); height: clamp(110px, 32vw, 150px); }
+
+  .activity-grid{ grid-template-columns: 1fr; }
+  .avatar-grid{ grid-template-columns: repeat(2, 1fr); }
+  .creator-field-row{ grid-template-columns: 1fr; }
+  .compat-lists-grid{ grid-template-columns: 1fr; }
+  .compat-pair-row{ gap:14px; }
+}

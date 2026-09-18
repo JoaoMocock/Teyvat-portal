@@ -1,0 +1,107 @@
+/* =========================================================
+   PORTAL DE TEYVAT — css/animations.css
+   Todas as animações (@keyframes) e classes que as disparam.
+   ========================================================= */
+
+@keyframes spin{ to{ transform: rotate(360deg); } }
+@keyframes pulse-star{ 0%,100%{ opacity:.6; transform:scale(.92);} 50%{ opacity:1; transform:scale(1.05);} }
+@keyframes fill-bar{ to{ width:100%; } }
+@keyframes dot-fade{ 0%,100%{opacity:0;} 50%{opacity:1;} }
+@keyframes rise-in{ from{ opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+@keyframes pop-in{ from{ opacity:0; transform:scale(.85);} to{opacity:1; transform:scale(1);} }
+@keyframes breathe{ 0%,100%{ transform:scale(1); opacity:.7;} 50%{ transform:scale(1.08); opacity:1;} }
+@keyframes float-y{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-14px);} }
+@keyframes vision-float{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-10px);} }
+@keyframes vision-pulse{ 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.045);} }
+@keyframes vision-orbit-particle{
+  from{ transform: rotate(0deg) translateX(var(--r,70px)) rotate(0deg); opacity:0; }
+  10%{ opacity:.8; }
+  90%{ opacity:.8; }
+  to{ transform: rotate(360deg) translateX(var(--r,70px)) rotate(-360deg); opacity:0; }
+}
+@keyframes orbit-spin{ from{ transform: rotate(0) translateX(var(--orbit-radius, 110px)) rotate(0);} to{ transform: rotate(360deg) translateX(var(--orbit-radius, 110px)) rotate(-360deg);} }
+@keyframes q-in{
+  from{ opacity:0; transform: translateY(24px) scale(.97); filter:blur(6px); }
+  to{ opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
+}
+@keyframes q-out{
+  from{ opacity:1; transform:translateY(0) scale(1); filter:blur(0);}
+  to{ opacity:0; transform:translateY(-24px) scale(.97); filter:blur(6px);}
+}
+@keyframes card-select{ 0%{ transform:scale(1); } 40%{ transform:scale(1.05); } 100%{ transform:scale(1.02); } }
+@keyframes answer-card-in{
+  from{ opacity:0; transform: translateY(16px) scale(.96); }
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+@keyframes card-fade-out{ to{ opacity:0; transform: scale(.95); } }
+@keyframes spark-pulse{ 0%{ opacity:.9; transform:scale(.6);} 100%{ opacity:0; transform:scale(1.6);} }
+@keyframes float-particle{
+  0%{ transform: translateY(0) translateX(0); opacity:0; }
+  10%{ opacity:1; }
+  90%{ opacity:1; }
+  100%{ transform: translateY(-120vh) translateX(20px); opacity:0; }
+}
+@keyframes wish-star-fly{
+  0%{ opacity:0; transform: translate(0, 0) scale(.5); }
+  12%{ opacity:1; }
+  100%{ opacity:1; transform: translate(38vw, -42vh) scale(1.4); }
+}
+@keyframes wish-boom-flash{
+  0%{ opacity:0; transform: translate(-50%,-50%) scale(0); }
+  35%{ opacity:1; transform: translate(-50%,-50%) scale(20); }
+  100%{ opacity:0; transform: translate(-50%,-50%) scale(34); }
+}
+@keyframes wish-card-in{
+  0%{ opacity:0; transform: translateY(22px) scale(.85); }
+  100%{ opacity:1; transform: translateY(0) scale(1); }
+}
+@keyframes wish-glow-pulse{ 0%,100%{ opacity:.28; transform:scale(1);} 50%{ opacity:.5; transform:scale(1.1);} }
+
+/* ---- gatilhos das animações ---- */
+.emblem-ring-a{ animation: spin 6s linear infinite; }
+.emblem-ring-b{ animation: spin 9s linear infinite reverse; }
+.emblem-star{ animation: pulse-star 2s ease-in-out infinite; }
+.loading-bar-fill{ animation: fill-bar 1.6s var(--ease) forwards; }
+
+.welcome-title{ animation: rise-in .9s var(--ease) both; }
+.welcome-sub{ animation: rise-in .9s var(--ease) .1s both; }
+.dialogue-box{ animation: rise-in .9s var(--ease) .2s both; }
+.name-form{ animation: rise-in .9s var(--ease) .3s both; }
+.welcome-art-glow{ animation: breathe 4s ease-in-out infinite; }
+.welcome-paimon-big{ animation: float-y 5s ease-in-out infinite; }
+
+.question-panel.q-enter{ animation: q-in .55s var(--ease) both; }
+.question-panel.q-exit{ animation: q-out .4s var(--ease) both; }
+.answer-card.selected{ animation: card-select .55s var(--ease) both; }
+.answer-card.fade-out{ animation: card-fade-out .4s ease forwards; }
+.spark-burst{ animation: spark-pulse .6s ease forwards; }
+.el-particle{ animation: float-particle linear infinite; }
+
+.reveal-line.show{ animation: rise-in .8s var(--ease) both; }
+.orbit-symbol{ animation: orbit-spin 5s linear infinite; }
+.orbit-symbol.fading{ animation-play-state: paused; }
+.orbit-symbol.winner{ animation-play-state: paused; }
+
+.result-card{ animation: pop-in .7s var(--ease) both; }
+.result-symbol .result-symbol-wrap .vision-aura{ animation: breathe 3.5s ease-in-out infinite; }
+.vision-aura{ animation: breathe 3.5s ease-in-out infinite; }
+.vision-particles span{ animation: vision-orbit-particle linear infinite; }
+.vision-img{ animation: vision-float 4.5s ease-in-out infinite, vision-pulse 3.2s ease-in-out infinite; }
+.result-symbol{ animation: breathe 3.5s ease-in-out infinite; }
+
+.preview-wrap.show{ animation: rise-in .5s var(--ease) both; }
+.greeting-spinner{ animation: spin 1s linear infinite; }
+
+.activity-card{ animation: rise-in .5s var(--ease) both; }
+.achievement-popup.show{ }
+
+.wish-star.fly{ animation: wish-star-fly 1.7s ease-in forwards; }
+.wish-boom.boom{ animation: wish-boom-flash .5s ease-out forwards; }
+.wish-card{ animation: wish-card-in .5s var(--ease) both; }
+.wish-card.tier-4 .wish-card-glow{ animation: wish-glow-pulse 2.6s ease-in-out infinite; }
+.wish-card.tier-5 .wish-card-glow{ animation: wish-glow-pulse 2.1s ease-in-out infinite; }
+.wish-card.tier-5{ animation: wish-card-in .5s var(--ease) both, vision-pulse 2.4s ease-in-out infinite .5s; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
